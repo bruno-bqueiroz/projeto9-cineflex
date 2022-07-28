@@ -9,7 +9,7 @@ export default function App (){
                 <div className="topo">CINEFLEX</div>
                 <Routes>
                     <Route path='/' element = {<Home />}/>
-                    <Route path='/sessao' element = {<Sessao />} />
+                    <Route path='/sessao/:ID' element = {<Sessao />} />
                 </Routes>
             </BrowserRouter>
         </>

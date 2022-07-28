@@ -20,7 +20,7 @@ export default function Home(){
             </div>
             <div className="filmes">
                 {filmes.map((value) =>
-                <Link to='/sessao'>
+                <Link to={`/sessao/${value.id}`}>
                     <img key={value.id}
                     src={value.posterURL}
                     alt="capa do filme" />
