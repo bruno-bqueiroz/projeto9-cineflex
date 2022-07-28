@@ -22,7 +22,8 @@ export default function Home(){
                 {filmes.map((value) =>
                 <Link to='/sessao'>
                     <img key={value.id}
-                    src={value.posterURL} alt="capa do filme" />
+                    src={value.posterURL}
+                    alt="capa do filme" />
                 </Link> 
                 )}
             </div>

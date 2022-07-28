@@ -22,7 +22,7 @@
 }
 .cabecalho{
     width: 100vw;
-    height: 15vh;
+    height: 10vh;
     position: fixed;
     top: 10vh;
     background-color: #FFFFFF;
@@ -59,17 +59,61 @@
 
 .horarios {    
     width: 100vw;
-    margin-top: 25vh;
-    background-color: red;
-    height: 60vh;
+    
+    margin-top: 20vh;
+    padding-bottom: 15vh;
+    height: auto;
+    font-size: 5vw;
+    display: flex;
+    flex-direction: column;
+}
+.caixa{
+    margin: 1vh 5vw;
+    
+}
+
+.horas{
+    width: auto;
+    height: 7vh;
+    display: flex;
+    
+}
+
+.hora{
+    width: 25vw;
+    height: 5vh;
+    margin-top: 1vw;
+    margin-left: 2vw;
+    background-color: #E8833A;
+    color: white;
     display: flex;
     align-items: center;
+    justify-content: center;
+    border-radius: 3px;
 }
+
+
+
+
 
 .escolhido{
     width: 100vw;
     height: 15vh;
-    background-color: blue;
+    background-color: #DFE6ED;
+    position: fixed;
+    bottom: 0;
+    font-size: 7vw;
+    color: #293845;
     display: flex;
     align-items: center;
+    z-index: 1;
+}
+
+.escolhido img{
+    width: auto;
+    height: 90%;
+    margin-left: 5vw;
+}
+.escolhido p{
+    margin-left: 5vw;
 }
