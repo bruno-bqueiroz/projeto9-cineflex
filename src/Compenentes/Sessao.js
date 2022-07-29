@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import {useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -6,10 +6,12 @@ import { useParams } from "react-router-dom";
 export default function Sessao (){
     const [horario, setHorario] = useState([]);
     const [rodape, setRodape] = useState([]);
+   
+
     const {ID} = useParams();
 
     useEffect (()=>{
-        const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${ID}/showtimes`);
+        const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/movies/${ID}/showtimes`);
 
         promise.then(resposta=>{
             setRodape(resposta.data)
@@ -28,8 +30,10 @@ export default function Sessao (){
                     <div className="caixa">
                         <p>{value.weekday}</p>
                         <div className="horas">
-                            {value.showtimes.map((value)=>(
-                            <div className="hora">{value.name}</div>
+                            {value.showtimes.map((value, index)=>(
+                                <Link to={`/assentos/${value.id}`}>
+                                <div className="hora" key={index}>{value.name}</div>
+                                </Link>
                             ))}
                         </div>
                     </div>

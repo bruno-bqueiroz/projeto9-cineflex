@@ -6,7 +6,7 @@ export default function Home(){
 
     const [filmes, setFilmes] = useState([]);
     useEffect (()=>{
-        const promise = axios.get('https://mock-api.driven.com.br/api/v5/cineflex/movies');
+        const promise = axios.get('https://mock-api.driven.com.br/api/v7/cineflex/movies');
         
         promise.then(resposta => {
             setFilmes(resposta.data);    
@@ -19,10 +19,10 @@ export default function Home(){
                 <p>Selecione o filme</p>
             </div>
             <div className="filmes">
-                {filmes.map((value) =>
+                {filmes.map((value, index) =>
                 <Link to={`/sessao/${value.id}`}>
-                    <img key={value.id}
-                    src={value.posterURL}
+                    <img 
+                    src={value.posterURL}key={index}
                     alt="capa do filme" />
                 </Link> 
                 )}
