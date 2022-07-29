@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-
+let array = [];
 function Reservar(){
     const [nome, setNome] = useState("");
 	const [cpf, setCPF] = useState("");
@@ -10,7 +10,7 @@ function Reservar(){
     function fazerReserva(event){
         event.preventDefault();
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",{
-            ids: [161, 162],
+            ids: array,
             name: nome,
             cpf: cpf
         });
@@ -34,7 +34,9 @@ export default function Assentos(){
      const [diaRodape, setDiaRodape] = useState([]);
      const [horaRodape, setHoraRodape] = useState([]);
      const [assentos, setAssentos] = useState([]);
-    
+     const [id, setId] = useState('');
+     const [disponivel, setDisponivel] = useState('');
+     
      const {ID} = useParams();
 
      useEffect(()=>{
@@ -43,12 +45,16 @@ export default function Assentos(){
             setRodape(resposta.data.movie)
             setHoraRodape(resposta.data)
             setDiaRodape(resposta.data.day)
-            setAssentos(resposta.data.seats);
-
+            setAssentos(resposta.data.seats)
+            setDisponivel(resposta.data.seats.isAvailable)
+            
         })
     },[]);
-
-
+    if (id != "" && !array.includes(id)){
+        array = [...array, id]
+        console.log(array);
+        }
+        
     return(
         <>
         <div className="home">
@@ -57,9 +63,13 @@ export default function Assentos(){
             </div>
             <div className="assento">
                 {assentos.map ((value, index)=>
-                     <div className="bolinha" key={index}>
-                     <p>{value.name}</p>
-                     </div>
+              
+                <div className={value.isAvailable ? "bolinha " : "bolinha indisponivel "} key={index}
+                    onClick = {() =>setId(value.id)}>
+                    <p>{value.name}</p>
+                </div> 
+                
+                    
                 )}
                 <div className='exemplo'>
                     <div className='caixas'>

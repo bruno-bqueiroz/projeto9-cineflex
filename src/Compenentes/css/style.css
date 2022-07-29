@@ -177,7 +177,7 @@ button {
     border: solid #E8833A;
     border-radius: 5px;
     width: 40vw;
-    height: 5vh;
+    height: 7vh;
     background-color: #E8833A;
 }
 a{
@@ -187,7 +187,7 @@ a{
 
 .escolhido{
     width: 100vw;
-    height: 15vh;
+    height: 13vh;
     background-color: #DFE6ED;
     position: fixed;
     bottom: 0;
@@ -206,4 +206,3 @@ a{
 .escolhido p{
     margin-left: 5vw;
 }
-
