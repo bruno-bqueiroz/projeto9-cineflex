@@ -7,7 +7,6 @@ export default function Sessao (){
     const [horario, setHorario] = useState([]);
     const [rodape, setRodape] = useState([]);
    
-
     const {ID} = useParams();
 
     useEffect (()=>{
