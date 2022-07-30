@@ -35,7 +35,7 @@ export default function Assentos(){
      const [horaRodape, setHoraRodape] = useState([]);
      const [assentos, setAssentos] = useState([]);
      const [id, setId] = useState('');
-     const [disponivel, setDisponivel] = useState('');
+     const [disponivel, setDisponivel] = useState(false);
      
      const {ID} = useParams();
 
@@ -46,14 +46,20 @@ export default function Assentos(){
             setHoraRodape(resposta.data)
             setDiaRodape(resposta.data.day)
             setAssentos(resposta.data.seats)
-            setDisponivel(resposta.data.seats.isAvailable)
             
         })
     },[]);
-    if (id != "" && !array.includes(id)){
-        array = [...array, id]
-        console.log(array);
+    function click(props){
+        setId(props)
+       
+        if (id != "" && !array.includes(id) && id ){
+            array = [...array, id]
+            console.log(array);
+            setDisponivel(false);
         }
+    }
+
+        
         
     return(
         <>
@@ -61,16 +67,15 @@ export default function Assentos(){
             <div className="cabecalho">
                 <p>Selecione o(s) assento(s)</p>
             </div>
+
             <div className="assento">
                 {assentos.map ((value, index)=>
-              
-                <div className={value.isAvailable ? "bolinha " : "bolinha indisponivel "} key={index}
-                    onClick = {() =>setId(value.id)}>
+                <div className={value.isAvailable ? "bolinha "  :  "bolinha indisponivel"} key={index}
+                    onClick = {()=> {value.isAvailable ? click( value.id) :click("")}}>
                     <p>{value.name}</p>
                 </div> 
-                
-                    
                 )}
+
                 <div className='exemplo'>
                     <div className='caixas'>
                         <div className="bolinha selecionado"></div>
