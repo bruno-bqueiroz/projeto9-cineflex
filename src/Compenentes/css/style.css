@@ -183,7 +183,49 @@ button {
 a{
     text-decoration: none;
 }
+.fim {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.sucesso {
+    width: auto;
+    height: auto;
+    position: fixed;
+    top: 10vh;
+    padding-top: 4vw;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: 7vw;
+    z-index: 1;
+    color:#247A6B;
+    ;
+}
+
+.ticket {    
+    width: 90vw;
+    margin-top: 30vh;
+    padding-bottom: 15vh;
+    height: auto;
+    background-color: #1AAE9E;
+    font-size: 5vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.ticket-descricao{
+    display: flex;
+    
+}
+.ticket-descricao p{
+    margin-left: 10px;
+}
 
 .escolhido{
     width: 100vw;

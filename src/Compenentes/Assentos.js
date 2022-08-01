@@ -1,19 +1,25 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import Assento from './Assento'
 
-let array = [];
-function Reservar(){
+
+function Reservar({array}){
     const [nome, setNome] = useState("");
 	const [cpf, setCPF] = useState("");
+    
+    const navigate = useNavigate();
    
     function fazerReserva(event){
+        console.log(array)
         event.preventDefault();
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",{
             ids: array,
             name: nome,
             cpf: cpf
         });
+        
+        navigate('/sucesso');
     }
 
     return(
@@ -34,11 +40,11 @@ export default function Assentos(){
      const [diaRodape, setDiaRodape] = useState([]);
      const [horaRodape, setHoraRodape] = useState([]);
      const [assentos, setAssentos] = useState([]);
-     const [id, setId] = useState('');
-     const [disponivel, setDisponivel] = useState(false);
+     const [array, setArray] = useState([]);
+     console.log(array)
+     
      
      const {ID} = useParams();
-
      useEffect(()=>{
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${ID}/seats`)
         promise.then(resposta =>{
@@ -49,17 +55,8 @@ export default function Assentos(){
             
         })
     },[]);
-    function click(props){
-        setId(props)
-       
-        if (id != "" && !array.includes(id) && id ){
-            array = [...array, id]
-            console.log(array);
-            setDisponivel(false);
-        }
-    }
 
-        
+   
         
     return(
         <>
@@ -69,13 +66,19 @@ export default function Assentos(){
             </div>
 
             <div className="assento">
-                {assentos.map ((value, index)=>
-                <div className={value.isAvailable ? "bolinha "  :  "bolinha indisponivel"} key={index}
-                    onClick = {()=> {value.isAvailable ? click( value.id) :click("")}}>
-                    <p>{value.name}</p>
-                </div> 
-                )}
+            {assentos.map ((value, index)=>
+            
+                <Assento
+                idAssento = {value.id} 
+                numero = {value.name}
+                index = {index}
+                disponibilidade = {value.isAvailable}
+                setArray = {setArray}
+                array = {array}
 
+                 />
+                )}
+                
                 <div className='exemplo'>
                     <div className='caixas'>
                         <div className="bolinha selecionado"></div>
@@ -91,7 +94,7 @@ export default function Assentos(){
                         </div>
                     </div>
                     <div className='input'>
-                    <Reservar/>
+                    <Reservar array = {array}/>
                     </div>
             </div>
             <div className="escolhido">
@@ -105,3 +108,4 @@ export default function Assentos(){
         </>
     )
 }
+
