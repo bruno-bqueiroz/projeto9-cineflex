@@ -4,14 +4,19 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Assento from './Assento'
 
 
-function Reservar({array}){
+function Reservar({
+    array
+}){
     const [nome, setNome] = useState("");
 	const [cpf, setCPF] = useState("");
     
     const navigate = useNavigate();
    
     function fazerReserva(event){
+
         console.log(array)
+
+       
         event.preventDefault();
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",{
             ids: array,
@@ -48,18 +53,29 @@ function Reservar({array}){
 }
 
 export default function Assentos({
-    idSessao
+    setTitulo,
+    setData,
+    setHora,
+    setNumero
+
 }){
      const [rodape, setRodape] = useState([]);
      const [diaRodape, setDiaRodape] = useState([]);
      const [horaRodape, setHoraRodape] = useState([]);
      const [assentos, setAssentos] = useState([]);
      const [array, setArray] = useState([]);
-     console.log(array);
+     const [numb, setNumb] = useState([]);
      
+     
+     setTitulo (rodape.title);
+     setData(diaRodape.date);
+     setHora (horaRodape.name);
+     setNumero(numb);
+       
      
      const {ID} = useParams();
-     idSessao (ID);
+     
+
      useEffect(()=>{
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${ID}/seats`)
         promise.then(resposta =>{
@@ -87,6 +103,8 @@ export default function Assentos({
                 disponibilidade = {value.isAvailable}
                 setArray = {setArray}
                 array = {array}
+                numb = {numb}
+                setNumb = {setNumb}
                  />
                 )}
                 
@@ -105,7 +123,8 @@ export default function Assentos({
                         </div>
                     </div>
                     <div className='input'>
-                    <Reservar array = {array}/>
+                    <Reservar
+                    array = {array}/>
                     </div>
             </div>
             <div className="escolhido">

@@ -1,26 +1,22 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {useLocation, useNavigate} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 
 
 export default function Sucesso (
-    idsessao
+    titulo,
+    
 ){
     const navigate = useNavigate();
-    console.log(idsessao)
+    
+    console.log(titulo);
+    
+
     function home(){
         navigate('/');
     }
 
-    const ID = 100;
-    const [filme, setFilme] = useState({});
-    useEffect(()=>{
-        const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${ID}/seats`)
-        promise.then(resposta =>{
-          setFilme(resposta.data);  
-        })
-    },[]);
     
    
     return (
@@ -30,14 +26,15 @@ export default function Sucesso (
                 <b>com sucesso!</b>
                 <div className='ticket'>
                 <b>Filme e sessão</b>
-                <p>Enola Holmes</p>
-                <p>24/06/2021 15:00</p>
+                <p>{titulo.titulo}</p>
+                <p>{titulo.data}   {titulo.hora}</p>
 
                 </div>
                 <div className='ticket'>
                 <b>Ingressos</b>
-                <p>Assento 15</p>
-                
+                {titulo.numero.map ((value)=>
+                <p>Assento {value}</p>
+                )}
                 </div>
                 <div className='ticket'>
                 <b>Comprador</b>
