@@ -11,7 +11,9 @@ export default function App (){
     const [data, setData] = useState("");
     const [hora, setHora] = useState("");
     const [numero, setNumero] = useState([]);
-    
+    const [dado1, setDado1] = useState([]);
+    const [dado2, setDado2] = useState([]);
+
     return (
         <>transfer
             <BrowserRouter>
@@ -25,6 +27,8 @@ export default function App (){
                         setData = {setData}
                         setHora = {setHora}
                         setNumero = {setNumero}
+                        setDado1 = {setDado1}
+                        setDado2 = {setDado2}
                         
 
                     />}
@@ -35,6 +39,8 @@ export default function App (){
                         data = {data}
                         hora = {hora}
                         numero = {numero}
+                        dado1 = {dado1}
+                        dado2 = {dado2}
                         
                     />}
                     />

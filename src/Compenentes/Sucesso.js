@@ -6,7 +6,7 @@ import { useNavigate} from 'react-router-dom';
 
 export default function Sucesso (
     titulo,
-    
+    dado1
 ){
     const navigate = useNavigate();
     
@@ -38,8 +38,8 @@ export default function Sucesso (
                 </div>
                 <div className='ticket'>
                 <b>Comprador</b>
-                <p>Nome: João da Silva Sauro</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {titulo.dado1}</p>
+                <p>CPF: {titulo.dado2}</p>
                 </div>
                 <div className='botao'>
                 <button onClick={home}>Voltar pra Home</button>

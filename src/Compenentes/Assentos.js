@@ -5,11 +5,14 @@ import Assento from './Assento'
 
 
 function Reservar({
-    array
+    array,
+    setNomes,
+    setCpfs
 }){
     const [nome, setNome] = useState("");
 	const [cpf, setCPF] = useState("");
-    
+    setNomes(nome);
+    setCpfs(cpf);
     const navigate = useNavigate();
    
     function fazerReserva(event){
@@ -56,7 +59,9 @@ export default function Assentos({
     setTitulo,
     setData,
     setHora,
-    setNumero
+    setNumero,
+    setDado1,
+    setDado2
 
 }){
      const [rodape, setRodape] = useState([]);
@@ -65,13 +70,15 @@ export default function Assentos({
      const [assentos, setAssentos] = useState([]);
      const [array, setArray] = useState([]);
      const [numb, setNumb] = useState([]);
-     
+     const [nomes, setNomes] = useState([]);
+     const [cpfs, setCpfs] = useState([]);
      
      setTitulo (rodape.title);
      setData(diaRodape.date);
      setHora (horaRodape.name);
      setNumero(numb);
-       
+     setDado1(nomes);
+     setDado2(cpfs)
      
      const {ID} = useParams();
      
@@ -83,7 +90,6 @@ export default function Assentos({
             setHoraRodape(resposta.data)
             setDiaRodape(resposta.data.day)
             setAssentos(resposta.data.seats)
-            
         })
     },[]);
         
@@ -124,7 +130,10 @@ export default function Assentos({
                     </div>
                     <div className='input'>
                     <Reservar
-                    array = {array}/>
+                    array = {array}
+                    setNomes = {setNomes}
+                    setCpfs = {setCpfs}
+                    />
                     </div>
             </div>
             <div className="escolhido">
