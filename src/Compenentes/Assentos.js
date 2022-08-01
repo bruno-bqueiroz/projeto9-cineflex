@@ -14,13 +14,25 @@ function Reservar({array}){
         console.log(array)
         event.preventDefault();
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",{
-            ids: array,
+            ids: "adadaww",
             name: nome,
             cpf: cpf
         });
+        requisicao.then(tratarSucesso);
+        requisicao.catch(tratarErro);
         
-        navigate('/sucesso');
+
+        function tratarSucesso(resposta) {
+            console.log ("sucesso" + resposta.data)
+            navigate('/sucesso');
+        }
+
+        function tratarErro(erro) {
+            console.log("Status code: " + erro.response.status); // Ex: 404
+	        console.log("Mensagem de erro: " + erro.response.data); // Ex: Not Found
+}
     }
+
 
     return(
         <>

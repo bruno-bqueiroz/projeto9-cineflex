@@ -190,7 +190,7 @@ a{
 }
 
 .sucesso {
-    width: auto;
+    width: 100vw;
     height: auto;
     position: fixed;
     top: 10vh;
@@ -204,28 +204,40 @@ a{
     font-size: 7vw;
     z-index: 1;
     color:#247A6B;
-    ;
 }
 
 .ticket {    
     width: 90vw;
-    margin-top: 30vh;
-    padding-bottom: 15vh;
     height: auto;
-    background-color: #1AAE9E;
+    margin-top: 5vh;
+    color:#293845;
     font-size: 5vw;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
 }
-
-.ticket-descricao{
+.ticket p{
+    font-size: 6vw;
+    margin-top: 1vh ;
+    font-weight: 500;
+}
+.sucesso button{
+    width: 60vw;
+    font-size: 5vw;
+    color: #FFFFFF;
     display: flex;
-    
+    align-items: center;
+    justify-content: center;
 }
-.ticket-descricao p{
-    margin-left: 10px;
+.botao{
+    margin-top: 8vh;
 }
+
+
+
+
+
 
 .escolhido{
     width: 100vw;
