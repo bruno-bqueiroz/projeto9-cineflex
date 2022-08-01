@@ -1,10 +1,18 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import {useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom';
 
 
-export default function Sucesso (){
-   
+
+export default function Sucesso (
+    idsessao
+){
+    const navigate = useNavigate();
+    console.log(idsessao)
+    function home(){
+        navigate('/');
+    }
+
     const ID = 100;
     const [filme, setFilme] = useState({});
     useEffect(()=>{
@@ -37,7 +45,7 @@ export default function Sucesso (){
                 <p>CPF: 123.456.789-10</p>
                 </div>
                 <div className='botao'>
-                <button>Voltar pra Home</button>
+                <button onClick={home}>Voltar pra Home</button>
                 </div>
             </div>
 

@@ -14,7 +14,7 @@ function Reservar({array}){
         console.log(array)
         event.preventDefault();
         const requisicao = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",{
-            ids: "adadaww",
+            ids: array,
             name: nome,
             cpf: cpf
         });
@@ -23,7 +23,7 @@ function Reservar({array}){
         
 
         function tratarSucesso(resposta) {
-            console.log ("sucesso" + resposta.data)
+            console.log ("sucesso " + resposta.data)
             navigate('/sucesso');
         }
 
@@ -47,16 +47,19 @@ function Reservar({array}){
     )
 }
 
-export default function Assentos(){
+export default function Assentos({
+    idSessao
+}){
      const [rodape, setRodape] = useState([]);
      const [diaRodape, setDiaRodape] = useState([]);
      const [horaRodape, setHoraRodape] = useState([]);
      const [assentos, setAssentos] = useState([]);
      const [array, setArray] = useState([]);
-     console.log(array)
+     console.log(array);
      
      
      const {ID} = useParams();
+     idSessao (ID);
      useEffect(()=>{
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${ID}/seats`)
         promise.then(resposta =>{
@@ -67,8 +70,6 @@ export default function Assentos(){
             
         })
     },[]);
-
-   
         
     return(
         <>
@@ -79,7 +80,6 @@ export default function Assentos(){
 
             <div className="assento">
             {assentos.map ((value, index)=>
-            
                 <Assento
                 idAssento = {value.id} 
                 numero = {value.name}
@@ -87,7 +87,6 @@ export default function Assentos(){
                 disponibilidade = {value.isAvailable}
                 setArray = {setArray}
                 array = {array}
-
                  />
                 )}
                 

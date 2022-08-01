@@ -7,26 +7,27 @@ export default function Assento ({
     index,
     disponibilidade,
     setArray,
-    array = {array}
+    array 
 }){
+    const [clicado, setClicado] = useState(false);
+    function click(idAssento){
 
-    const [id, setId] = useState(idAssento);
-    function click({idAssento}){
-        setId(idAssento)
-
-        if (id !== "" && !array.includes(id) && id && disponibilidade){
+        if (!clicado && disponibilidade){
             console.log("entrou");
-            const transfer = [...array, id];
+            const transfer = [...array, idAssento];
             setArray (transfer);
+            setClicado(true);
             
         }else if (!disponibilidade) {
             alert("Esse assento não está disponível");
+        }else if(clicado){
+            setClicado(false);
         }
     }
     return (
     
-        <div className={disponibilidade  ? "bolinha " : "bolinha indisponivel"} key={index}
-            onClick = {()=> {disponibilidade ? click(idAssento) : click("")}}>
+        <div className={disponibilidade  ? clicado ? "bolinha selecionado" :  "bolinha " : "bolinha indisponivel"} key={index}
+            onClick = {()=> {click(idAssento)}}>
             <p>{numero}</p>
         </div> 
     )}
