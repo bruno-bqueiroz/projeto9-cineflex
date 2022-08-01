@@ -192,8 +192,7 @@ a{
 .sucesso {
     width: 100vw;
     height: auto;
-    position: fixed;
-    top: 10vh;
+    margin-top: 10vh;
     padding-top: 4vw;
     background-color: #FFFFFF;
     display: flex;
@@ -204,6 +203,7 @@ a{
     font-size: 7vw;
     z-index: 1;
     color:#247A6B;
+    
 }
 
 .ticket {    
@@ -224,6 +224,7 @@ a{
 }
 .sucesso button{
     width: 60vw;
+    height: auto;
     font-size: 5vw;
     color: #FFFFFF;
     display: flex;
